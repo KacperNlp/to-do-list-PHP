@@ -1,3 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App;
+
+use App\Backend\UrlHandler as UrlHandler;
+
+$urlHandler = new UrlHandler();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +25,18 @@
 
 <body>
     <div class="page">
-        <header>To do list!</header>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/">Tasks List</a></li>
+                    <li><a href="/?action=add">Add task</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <p>Content</p>
+            <p><?= $urlHandler->getCurrentAction(); ?></p>
+        </main>
     </div>
     <script src="dist/bundle.js"></script>
 </body>
