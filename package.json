@@ -1,0 +1,33 @@
+{
+  "name": "app-1-to-do-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "css-loader": "^6.7.3",
+    "sass": "^1.62.0",
+    "style-loader": "^3.3.2",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4",
+    "webpack": "^5.80.0"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0",
+    "node-sass": "^8.0.0",
+    "sass-loader": "^13.2.2",
+    "webpack-cli": "^5.0.2"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KacperNlp/to-do-list-PHP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KacperNlp/to-do-list-PHP/issues"
+  },
+  "homepage": "https://github.com/KacperNlp/to-do-list-PHP#readme"
+}
