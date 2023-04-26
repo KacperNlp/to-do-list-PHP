@@ -8,6 +8,7 @@ class UrlHandler
 {
     static private $ACTION_NAME = 'action';
     static private $ADD_ACTION = 'add';
+    static private $CREATE_ACTION = 'create';
 
     private $currentAction;
 
@@ -29,5 +30,10 @@ class UrlHandler
     public function isAddAction()
     {
         return $this->currentAction === self::$ADD_ACTION;
+    }
+
+    public function isCreateAction()
+    {
+        return $this->currentAction === self::$CREATE_ACTION;
     }
 }
