@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Backend\UrlHandler as UrlHandler;
+require_once('./backend/UrlHandler.php');
 
 $urlHandler = new UrlHandler();
 ?>
@@ -26,18 +26,13 @@ $urlHandler = new UrlHandler();
 <body>
     <div class="page">
         <header>
-            <nav>
-                <ul>
-                    <li><a href="/">Tasks List</a></li>
-                    <li><a href="/?action=add">Add task</a></li>
-                </ul>
-            </nav>
+            <?php require_once('./templates/components/Navigation.php'); ?>
         </header>
         <main>
-            <p>Content</p>
-            <p><?= $urlHandler->getCurrentAction(); ?></p>
+            <?php require_once('./templates/components/MainContent.php'); ?>
         </main>
     </div>
+    <?php require_once('./templates/components/Footer.php'); ?>
     <script src="dist/bundle.js"></script>
 </body>
 

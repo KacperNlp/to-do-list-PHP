@@ -2,27 +2,32 @@
 
 declare(strict_types=1);
 
-namespace App\Backend;
+namespace App;
 
 class UrlHandler
 {
-    static public $ADD_ACTION = 'add';
+    static private $ACTION_NAME = 'action';
+    static private $ADD_ACTION = 'add';
 
     private $currentAction;
 
     public function __construct()
     {
-        $this->setUrLProperty(UrlHandler::$ADD_ACTION);
+        $this->setCurrentAction(self::$ACTION_NAME);
     }
 
-    private function setUrLProperty($property): void
+    private function setCurrentAction(string $property): void
     {
-        if (!empty($_GET[$property])) $this->currentAction = $_GET[$property];
+        $this->currentAction = $_GET[$property] ?? null;
     }
 
     public function getCurrentAction()
     {
-        if (!empty($this->currentAction)) return $this->currentAction;
-        else return null;
+        return $this->currentAction;
+    }
+
+    public function isAddAction()
+    {
+        return $this->currentAction === self::$ADD_ACTION;
     }
 }
