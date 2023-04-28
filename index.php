@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\NewTaskCreate;
+
 require_once('./backend/UrlHandler.php');
+require_once('./backend/NewTaskCreate.php');
+
+$db_config = require_once('./config/config.php');
+
+$newTaskCreate = new NewTaskCreate($_POST, $db_config);
 
 $urlHandler = new UrlHandler();
 

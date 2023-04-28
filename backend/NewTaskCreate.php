@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace App;
 
+require_once('./backend/DataBaseController.php');
+
 class NewTaskCreate
 {
     private $currentTask = [];
+    private $postData = [];
 
-    public function __construct()
+    public function __construct(array $postData, array $db_config)
     {
-        $this->setData();
+        $db = new DataBaseController($db_config);
+        $this->postData = $postData;
     }
 
-    private function setData()
+    public function setData()
     {
         if (!empty($_POST)) {
             $this->setDataTitle();
@@ -24,12 +28,12 @@ class NewTaskCreate
 
     private function setDataTitle()
     {
-        $this->currentTask['title'] = $_POST['title'] ?? null;
+        $this->currentTask['title'] = $this->postData['title'] ?? null;
     }
 
     private function setDataDescription()
     {
-        $this->currentTask['description'] = $_POST['description'] ?? null;
+        $this->currentTask['description'] = $this->postData['description'] ?? null;
     }
 
     private function setDataDate()

@@ -3,12 +3,7 @@
 /**
  * Page TaskCreated
  */
-
-use App\NewTaskCreate;;
-
-require_once('./backend/NewTaskCreate.php');
-
-$newTaskCreate = new NewTaskCreate();
+$newTaskCreate->setData();
 
 if ($newTaskCreate->TaskIsCreated()) :
 ?>
