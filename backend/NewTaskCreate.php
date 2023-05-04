@@ -13,6 +13,7 @@ class NewTaskCreate
 {
     private $currentTask = [];
     private $postData = [];
+    private DataBaseController $db;
 
     public function __construct(array $postData, array $db_config)
     {
@@ -20,7 +21,7 @@ class NewTaskCreate
             throw new ConfigurationException('You configuration properties for DB are not correct!');
         };
 
-        $db = new DataBaseController($db_config);
+        $this->db = new DataBaseController($db_config);
         $this->postData = $postData;
     }
 
@@ -30,6 +31,8 @@ class NewTaskCreate
             $this->setDataTitle();
             $this->setDataDescription();
             $this->setDataDate();
+
+            $this->db->createTaskToList($this->currentTask);
         }
     }
 
@@ -45,7 +48,7 @@ class NewTaskCreate
 
     private function setDataDate()
     {
-        $createdDate = date('d.m.y');
+        $createdDate = date('d.m.y H:i:s');
         $this->currentTask['date'] = $createdDate;
     }
 

@@ -13,11 +13,14 @@ require_once('./backend/Exception/StorageException.php');
 
 use App\Excpetion\ConfigurationException;
 use App\Excpetion\StorageException;
+use Exception;
 use PDO;
 use PDOException;
 
 class DataBaseController
 {
+    private PDO $connectionDB;
+
     public function __construct(array $config)
     {
         if ($this->isDatabaseConfigurationNotCorrect($config)) {
@@ -32,7 +35,9 @@ class DataBaseController
     private function connectToDataBase(string $dns, array $config)
     {
         try {
-            $connection = new PDO($dns, $config['database_user'], $config['database_password']);
+            $this->connectionDB = new PDO($dns, $config['database_user'], $config['database_password'], [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]);
         } catch (PDOException $e) {
             throw new StorageException('We have problem with DNS connection!');
         }
@@ -46,5 +51,24 @@ class DataBaseController
         $isDbPasswordEmpty = empty($config['database_password']);
 
         return $isDbNameEmpty || $isDbHostEmpty || $isDbUserNameEmpty || $isDbPasswordEmpty;
+    }
+
+    public function createTaskToList(array $task): void
+    {
+        try {
+            $title = $this->connectionDB->quote($task['title']);
+            $description = $this->connectionDB->quote($task['description']);
+            $date = $this->connectionDB->quote($task['date']);
+
+            $query = "
+                INSERT INTO tasks (title, description, created) 
+                VALUES ($title, $description, $date)
+            ";
+
+            $this->connectionDB->exec($query);
+        } catch (PDOException  $e) {
+            echo "Error with DB: " . $e->getMessage();
+            throw new StorageException('Error with adding task to DB');
+        }
     }
 }
