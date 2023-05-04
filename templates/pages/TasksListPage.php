@@ -2,7 +2,9 @@
 
 /**
  * Page TasksList
- */;
+ */
+
+use App\UrlHandler;;
 
 $allTasks = $tasksList->getTasks();
 $isTasksListEmpty = $tasksList->isTasksListNotEmpty($allTasks);
@@ -17,7 +19,7 @@ if ($isTasksListEmpty) :
                 <p><?= $task['title']; ?></p>
                 <p><?= $task['description']; ?></p>
                 <p><?= $task['created']; ?></p>
-                <a href="/?delete=<?= $task['id']; ?>">Delete!</a>
+                <a href="/?action=<?= UrlHandler::$DELETE_ACTION; ?>&id=<?= $task['id']; ?>">Delete!</a>
             </li>
         <?php endforeach; ?>
     </ul>

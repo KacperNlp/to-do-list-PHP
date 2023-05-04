@@ -2,11 +2,13 @@
 
 /**
  * Page AddTask
- */; ?>
+ */
+
+use App\UrlHandler;; ?>
 
 <div class="form-container">
     <h3>Add new task</h3>
-    <form action="/?action=create" method="post">
+    <form action="/?action=<?= UrlHandler::$CREATE_ACTION; ?>" method="post">
         <label>
             <span>Task title:</span>
             <input type="text" name="title">

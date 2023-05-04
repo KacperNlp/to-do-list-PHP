@@ -30,4 +30,9 @@ class DataBaseHandler
         $tasks = $this->db->getAllTasks();
         return $tasks;
     }
+
+    public function deleteTask(int $taskId)
+    {
+        echo $taskId;
+    }
 }

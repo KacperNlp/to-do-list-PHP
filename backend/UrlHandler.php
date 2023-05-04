@@ -7,9 +7,9 @@ namespace App;
 class UrlHandler
 {
     static private $ACTION_NAME = 'action';
-    static private $ADD_ACTION = 'add';
-    static private $DELETE_ACTION = 'delete';
-    static private $CREATE_ACTION = 'create';
+    static public $ADD_ACTION = 'add';
+    static public $DELETE_ACTION = 'delete';
+    static public $CREATE_ACTION = 'create';
 
     private $currentAction;
 

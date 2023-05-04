@@ -28,4 +28,9 @@ class TasksList
     {
         return !empty($tasks);
     }
+
+    public function removeTask(int $taskId)
+    {
+        $this->database->deleteTask($taskId);
+    }
 }
