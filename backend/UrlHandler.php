@@ -8,6 +8,7 @@ class UrlHandler
 {
     static private $ACTION_NAME = 'action';
     static private $ADD_ACTION = 'add';
+    static private $DELETE_ACTION = 'delete';
     static private $CREATE_ACTION = 'create';
 
     private $currentAction;

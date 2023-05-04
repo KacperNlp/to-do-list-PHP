@@ -13,9 +13,9 @@ require_once('./backend/Exception/StorageException.php');
 
 use App\Excpetion\ConfigurationException;
 use App\Excpetion\StorageException;
-use Exception;
 use PDO;
 use PDOException;
+use PDOStatement;
 
 class DataBaseController
 {
@@ -70,5 +70,21 @@ class DataBaseController
             echo "Error with DB: " . $e->getMessage();
             throw new StorageException('Error with adding task to DB');
         }
+    }
+
+    public function getAllTasks(): array|PDOStatement
+    {
+        try {
+            $query = "
+                SELECT * FROM tasks
+            ";
+            $result = $this->connectionDB->query($query);
+            return $result;
+        } catch (PDOException $e) {
+            echo "Error with DB: " . $e->getMessage();
+            throw new StorageException('Error with adding task to DB');
+        }
+
+        return [];
     }
 }

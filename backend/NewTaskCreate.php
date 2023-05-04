@@ -4,24 +4,17 @@ declare(strict_types=1);
 
 namespace App;
 
-require_once('./backend/DataBaseController.php');
-require_once('./backend/Exception/ConfigurationException.php');
-
-use App\Excpetion\ConfigurationException;
+use App\DataBaseHandler;
 
 class NewTaskCreate
 {
     private $currentTask = [];
     private $postData = [];
-    private DataBaseController $db;
+    private DataBaseHandler $dataBase;
 
     public function __construct(array $postData, array $db_config)
     {
-        if ($this->connectionPropertiesForDBAreCorrect($db_config)) {
-            throw new ConfigurationException('You configuration properties for DB are not correct!');
-        };
-
-        $this->db = new DataBaseController($db_config);
+        $this->dataBase = new DataBaseHandler($db_config);
         $this->postData = $postData;
     }
 
@@ -32,7 +25,7 @@ class NewTaskCreate
             $this->setDataDescription();
             $this->setDataDate();
 
-            $this->db->createTaskToList($this->currentTask);
+            $this->dataBase->createTask($this->currentTask);
         }
     }
 
@@ -73,15 +66,5 @@ class NewTaskCreate
         $isDescriptionEmpty = !empty($this->currentTask['description']);
         $isDateEmpty = !empty($this->currentTask['date']);
         return $isTitleEmpty && $isDescriptionEmpty && $isDateEmpty;
-    }
-
-    private function connectionPropertiesForDBAreCorrect(array $db_config): bool
-    {
-        $isDbNameEmpty = empty($db_config['database']);
-        $isDbHostEmpty = empty($db_config['host']);
-        $isDbUserNameEmpty = empty($db_config['database_user']);
-        $isDbPasswordEmpty = empty($db_config['database_password']);
-
-        return $isDbNameEmpty || $isDbHostEmpty || $isDbUserNameEmpty || $isDbPasswordEmpty;
     }
 }

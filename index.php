@@ -13,6 +13,8 @@ use Throwable;
 require_once('./backend/UrlHandler.php');
 require_once('./backend/NewTaskCreate.php');
 require_once('./backend/Exception/AppException.php');
+require_once('./backend/TasksList.php');
+require_once('./backend/DataBaseHandler.php');
 
 $db_config = require_once('./config/config.php');
 
@@ -36,6 +38,7 @@ $db_config = require_once('./config/config.php');
 
 <body>
     <?php try {
+        $tasksList = new TasksList($db_config);
         $newTaskCreate = new NewTaskCreate($_POST, $db_config);
         $urlHandler = new UrlHandler();
     ?>
@@ -60,6 +63,7 @@ $db_config = require_once('./config/config.php');
         <h3>Error: <?= $e->getMessage(); ?></h3>
     <?php } catch (Throwable $e) {; ?>
         <h1>We have error with App</h1>
+        <?= $e->getMessage(); ?>
     <?php
     }; ?>
 </body>
