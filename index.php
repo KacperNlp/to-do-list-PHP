@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Excpetion\AppExcpetion;
 use App\NewTaskCreate;
+use Throwable;
 
 require_once('./backend/UrlHandler.php');
 require_once('./backend/NewTaskCreate.php');
+require_once('./backend/Exception/AppException.php');
 
 $db_config = require_once('./config/config.php');
 
@@ -34,16 +37,22 @@ $urlHandler = new UrlHandler();
 </head>
 
 <body>
-    <div class="page">
-        <header>
-            <?php require_once('./templates/components/Navigation.php'); ?>
-        </header>
-        <main>
-            <?php require_once('./templates/components/MainContent.php'); ?>
-        </main>
-    </div>
-    <?php require_once('./templates/components/Footer.php'); ?>
-    <script src="dist/bundle.js"></script>
+    <?php try { ?>
+        <div class="page">
+            <header>
+                <?php require_once('./templates/components/Navigation.php'); ?>
+            </header>
+            <main>
+                <?php require_once('./templates/components/MainContent.php'); ?>
+            </main>
+        </div>
+        <?php require_once('./templates/components/Footer.php'); ?>
+        <script src="dist/bundle.js"></script>
+    <?php } catch (AppExcpetion $e) { ?>
+        <h1>We have error with App</h1>
+        <h3><?= $e->getMessage(); ?></h3>
+    <?php } catch (Throwable $e) {
+    }; ?>
 </body>
 
 </html>
