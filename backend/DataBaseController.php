@@ -13,9 +13,8 @@ require_once('./backend/Exception/StorageException.php');
 
 use App\Excpetion\ConfigurationException;
 use App\Excpetion\StorageException;
-use Error;
 use PDO;
-use Throwable;
+use PDOException;
 
 class DataBaseController
 {
@@ -34,7 +33,7 @@ class DataBaseController
     {
         try {
             $connection = new PDO($dns, $config['database_user'], $config['database_password']);
-        } catch (Throwable $e) {
+        } catch (PDOException $e) {
             throw new StorageException('We have problem with DNS connection!');
         }
     }

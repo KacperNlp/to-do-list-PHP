@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App;
 
 use App\Excpetion\AppExcpetion;
+use App\Excpetion\ConfigurationException;
+use App\Excpetion\StorageException;
 use App\NewTaskCreate;
 use Throwable;
 
@@ -13,10 +15,6 @@ require_once('./backend/NewTaskCreate.php');
 require_once('./backend/Exception/AppException.php');
 
 $db_config = require_once('./config/config.php');
-
-$newTaskCreate = new NewTaskCreate($_POST, $db_config);
-
-$urlHandler = new UrlHandler();
 
 // error_reporting(0);
 // ini_set('display_errors', 0);
@@ -37,7 +35,10 @@ $urlHandler = new UrlHandler();
 </head>
 
 <body>
-    <?php try { ?>
+    <?php try {
+        $newTaskCreate = new NewTaskCreate($_POST, $db_config);
+        $urlHandler = new UrlHandler();
+    ?>
         <div class="page">
             <header>
                 <?php require_once('./templates/components/Navigation.php'); ?>
@@ -48,10 +49,18 @@ $urlHandler = new UrlHandler();
         </div>
         <?php require_once('./templates/components/Footer.php'); ?>
         <script src="dist/bundle.js"></script>
+    <?php } catch (ConfigurationException $e) { ?>
+        <h1>We have error with Configuration</h1>
+        <h3>Error: <?= $e->getMessage(); ?></h3>
+    <?php } catch (StorageException $e) { ?>
+        <h1>We have error with Storage</h1>
+        <h3>Error: <?= $e->getMessage(); ?></h3>
     <?php } catch (AppExcpetion $e) { ?>
         <h1>We have error with App</h1>
-        <h3><?= $e->getMessage(); ?></h3>
-    <?php } catch (Throwable $e) {
+        <h3>Error: <?= $e->getMessage(); ?></h3>
+    <?php } catch (Throwable $e) {; ?>
+        <h1>We have error with App</h1>
+    <?php
     }; ?>
 </body>
 
