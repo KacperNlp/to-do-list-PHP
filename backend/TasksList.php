@@ -24,12 +24,12 @@ class TasksList
         return $this->database->getTasks();
     }
 
-    public function isTasksListNotEmpty($tasks)
+    public function isTasksListNotEmpty(array|PDOStatement $tasks)
     {
-        return !empty($tasks);
+        return $tasks->rowCount() > 0;
     }
 
-    public function removeTask(int $taskId)
+    public function removeTask(string|int $taskId)
     {
         $this->database->deleteTask($taskId);
     }

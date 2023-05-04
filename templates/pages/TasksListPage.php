@@ -8,7 +8,11 @@ use App\UrlHandler;;
 
 $allTasks = $tasksList->getTasks();
 $isTasksListEmpty = $tasksList->isTasksListNotEmpty($allTasks);
-var_dump($allTasks);
+
+if ($urlHandler->isDelete()) {
+    $idOfTaskToDelete = $urlHandler->getIdOfTaskToDelete();
+    $tasksList->removeTask($idOfTaskToDelete);
+}
 
 if ($isTasksListEmpty) :
 ?>

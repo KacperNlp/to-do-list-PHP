@@ -37,4 +37,15 @@ class UrlHandler
     {
         return $this->currentAction === self::$CREATE_ACTION;
     }
+
+    public function isDelete()
+    {
+        return $this->currentAction === self::$DELETE_ACTION;
+    }
+
+    public function getIdOfTaskToDelete(): string|int
+    {
+        $taskId = $_GET['id'];
+        return $taskId;
+    }
 }

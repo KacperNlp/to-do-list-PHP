@@ -82,9 +82,27 @@ class DataBaseController
             return $result;
         } catch (PDOException $e) {
             echo "Error with DB: " . $e->getMessage();
-            throw new StorageException('Error with adding task to DB');
+            throw new StorageException('Error with getting task to DB');
         }
 
         return [];
+    }
+
+    public function deleteTask(string|int $taskID)
+    {
+        try {
+            $taksIDForQuery = $this->connectionDB->quote($taskID);
+
+            $query = "
+                DELETE FROM tasks
+                WHERE id = $taksIDForQuery
+            ";
+
+            $this->connectionDB->query($query);
+            header('Location: /');
+        } catch (PDOException $e) {
+            echo "Error with DB: " . $e->getMessage();
+            throw new StorageException('Error with deleting task to DB');
+        }
     }
 }

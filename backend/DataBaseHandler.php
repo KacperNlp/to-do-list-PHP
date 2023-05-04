@@ -31,8 +31,8 @@ class DataBaseHandler
         return $tasks;
     }
 
-    public function deleteTask(int $taskId)
+    public function deleteTask(string|int $taskId)
     {
-        echo $taskId;
+        $this->db->deleteTask($taskId);
     }
 }
