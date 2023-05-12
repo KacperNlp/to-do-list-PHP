@@ -1,0 +1,14 @@
+.button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    color: $white;
+    background: $light-gray;
+    border: 1px solid $light-gray;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        background-color: darken($color: $light-gray, $amount: 15);
+    }
+}

@@ -108,6 +108,20 @@ body {
   }
 }
 
+.button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  color: #efefef;
+  background: #537188;
+  border: 1px solid #537188;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.button:hover {
+  background-color: #364a58;
+}
+
 .card {
   width: 90%;
   max-width: 980px;
