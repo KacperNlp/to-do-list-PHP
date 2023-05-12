@@ -16,7 +16,7 @@ if ($urlHandler->isDelete()) {
 
 if ($isTasksListEmpty) :
 ?>
-    <h1>TasksList!</h1>
+    <h1 class="headline-main">TasksList!</h1>
     <ul>
         <?php foreach ($allTasks as $task) : ?>
             <li>
@@ -30,5 +30,5 @@ if ($isTasksListEmpty) :
         <?php endforeach; ?>
     </ul>
 <?php else : ?>
-    <h1>You don't have any tasks :/</h1>
+    <h1 class="headline-main">You don't have any tasks :/</h1>
 <?php endif; ?>

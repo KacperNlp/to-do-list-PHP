@@ -1,0 +1,13 @@
+.headline {
+    &-main {
+        font-size: $mobileHeadline;
+
+        @media (min-width: $tabletSmall) {
+            font-size: $tabletHeadline;
+        }
+
+        @media (min-width: $tablet) {
+            font-size: $desktopHeadline;
+        }
+    }
+}
