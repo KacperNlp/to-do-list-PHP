@@ -24,6 +24,8 @@ if ($isTasksListEmpty) :
                 <p><?= $task['description']; ?></p>
                 <p><?= $task['created']; ?></p>
                 <a href="/?action=<?= UrlHandler::$DELETE_ACTION; ?>&id=<?= $task['id']; ?>">Delete!</a>
+                <a href="/?action=<?= UrlHandler::$DELETE_ACTION; ?>&id=<?= $task['id']; ?>">Edit!</a>
+                <a href="/?action=<?= UrlHandler::$DELETE_ACTION; ?>&id=<?= $task['id']; ?>">More!</a>
             </li>
         <?php endforeach; ?>
     </ul>
