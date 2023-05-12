@@ -12,6 +12,19 @@ class UrlHandler
     static public $EDIT_ACTION = 'edit';
     static public $CREATE_ACTION = 'create';
 
+    static public function isActive(): bool
+    {
+        if (empty($_GET) || !array_key_exists(self::$ACTION_NAME, $_GET)) {
+            return false;
+        }
+
+        if ($_GET[self::$ACTION_NAME] === self::$ADD_ACTION) {
+            return true;
+        }
+
+        return false;
+    }
+
     private $currentAction;
 
     public function __construct()

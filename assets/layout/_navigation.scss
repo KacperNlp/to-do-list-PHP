@@ -1,0 +1,39 @@
+.header {
+    padding: 10px 20px;
+    background: $white;
+}
+
+.navigation {
+    &-list {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: flex;
+        gap: 20px;
+        list-style: none;
+
+        @media (min-width: $tabletSmall) {
+            flex-direction: column;
+        }
+
+        &-element {
+            margin: 10px 0;
+            
+            @media (min-width: $tabletSmall) {
+                margin: 0;
+                padding: 10px 20px;
+                border-bottom: 1px solid $light-gray;
+            }
+        }
+    }
+
+    &-link {
+        color: $light-gray;
+        text-decoration: none;
+        transition: .3s;
+
+        &:hover,
+        &.active {
+            color: $black;
+        }
+    }
+}

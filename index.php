@@ -43,10 +43,10 @@ $db_config = require_once('./config/config.php');
         $urlHandler = new UrlHandler();
     ?>
         <div class="page">
-            <header>
+            <header class="header">
                 <?php require_once('./templates/components/Navigation.php'); ?>
             </header>
-            <main>
+            <main class="container">
                 <?php require_once('./templates/components/MainContent.php'); ?>
             </main>
         </div>
